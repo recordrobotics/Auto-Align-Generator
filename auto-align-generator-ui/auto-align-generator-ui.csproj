@@ -1,0 +1,131 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>False</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>AutoAlignGenerator.ui</RootNamespace>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="assets\models\**" />
+    <EmbeddedResource Remove="assets\models\**" />
+    <None Remove="assets\models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="assets\config\settings.json" />
+    <None Remove="assets\config\themes\dark.json" />
+    <None Remove="assets\config\themes\light.json" />
+    <None Remove="assets\fonts\Inter-Bold.ttf" />
+    <None Remove="assets\fonts\Inter-Light.ttf" />
+    <None Remove="assets\fonts\Inter-Regular.ttf" />
+    <None Remove="assets\fonts\Inter-SemiBold.ttf" />
+    <None Remove="assets\fonts\Roboto-Regular.ttf" />
+    <None Remove="assets\fonts\Roboto-SemiBold.ttf" />
+    <None Remove="assets\shaders\color.glsl" />
+    <None Remove="assets\shaders\default.glsl" />
+    <None Remove="assets\shaders\font.glsl" />
+    <None Remove="assets\shaders\fontvert.glsl" />
+    <None Remove="assets\shaders\grid.glsl" />
+    <None Remove="assets\shaders\light.glsl" />
+    <None Remove="assets\shaders\lit.glsl" />
+    <None Remove="assets\shaders\uiimage.glsl" />
+    <None Remove="assets\shaders\uiimage.hittest.glsl" />
+    <None Remove="assets\shaders\uiimagemasked.glsl" />
+    <None Remove="assets\shaders\uiimagemasked.hittest.glsl" />
+    <None Remove="assets\shaders\uivertex.glsl" />
+    <None Remove="assets\shaders\vertex.glsl" />
+    <None Remove="assets\shaders\vertexinst.glsl" />
+    <None Remove="assets\textures\back.png" />
+    <None Remove="assets\textures\brand.jpg" />
+    <None Remove="assets\textures\calibrate.png" />
+    <None Remove="assets\textures\card.png" />
+    <None Remove="assets\textures\cardmask.png" />
+    <None Remove="assets\textures\cardshadow.png" />
+    <None Remove="assets\textures\field25-annotated.png" />
+    <None Remove="assets\textures\memory.png" />
+    <None Remove="assets\textures\navxmicro.png" />
+    <None Remove="assets\textures\pill.png" />
+    <None Remove="assets\textures\play.png" />
+    <None Remove="assets\textures\record.png" />
+    <None Remove="assets\textures\recordings.png" />
+    <None Remove="assets\textures\refresh.png" />
+    <None Remove="assets\textures\restore.png" />
+    <None Remove="assets\textures\roundrect.png" />
+    <None Remove="assets\textures\settings.png" />
+    <None Remove="assets\textures\split_mbg.png" />
+    <None Remove="assets\textures\split_mfg.png" />
+    <None Remove="assets\textures\split_sbg.png" />
+    <None Remove="assets\textures\split_sfg.png" />
+    <None Remove="assets\textures\stop.png" />
+    <None Remove="assets\textures\temperature.png" />
+    <None Remove="assets\textures\uvtest.png" />
+    <None Remove="assets\textures\zero.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="assets\config\themes\light.json" />
+    <EmbeddedResource Include="assets\config\themes\dark.json" />
+    <EmbeddedResource Include="assets\fonts\Inter-Bold.ttf" />
+    <EmbeddedResource Include="assets\fonts\Inter-Light.ttf" />
+    <EmbeddedResource Include="assets\fonts\Inter-Regular.ttf" />
+    <EmbeddedResource Include="assets\fonts\Inter-SemiBold.ttf" />
+    <EmbeddedResource Include="assets\shaders\default.glsl">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="assets\shaders\color.glsl" />
+    <EmbeddedResource Include="assets\shaders\uiimagemasked.hittest.glsl" />
+    <EmbeddedResource Include="assets\shaders\uiimagemasked.glsl" />
+    <EmbeddedResource Include="assets\shaders\uiimage.hittest.glsl" />
+    <EmbeddedResource Include="assets\shaders\uiimage.glsl" />
+    <EmbeddedResource Include="assets\shaders\font.glsl" />
+    <EmbeddedResource Include="assets\shaders\uivertex.glsl" />
+    <EmbeddedResource Include="assets\shaders\fontvert.glsl" />
+    <EmbeddedResource Include="assets\textures\back.png" />
+    <EmbeddedResource Include="assets\textures\cardshadow.png" />
+    <EmbeddedResource Include="assets\textures\field25-annotated.png" />
+    <EmbeddedResource Include="assets\textures\pill.png" />
+    <EmbeddedResource Include="assets\textures\roundrect.png" />
+    <EmbeddedResource Include="assets\textures\settings.png" />
+    <EmbeddedResource Include="assets\textures\split_mbg.png" />
+    <EmbeddedResource Include="assets\textures\split_mfg.png" />
+    <EmbeddedResource Include="assets\textures\split_sbg.png" />
+    <EmbeddedResource Include="assets\textures\split_sfg.png" />
+    <EmbeddedResource Include="assets\textures\uvtest.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontStashSharp" Version="1.3.10" />
+    <PackageReference Include="FontStashSharp.Base" Version="1.1.9" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.183">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Silk.NET" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Assimp" Version="2.22.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.7" />
+    <PackageReference Include="System.Memory" Version="4.6.2" />
+    <PackageReference Include="System.Text.Json" Version="10.0.0-preview.2.25163.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\auto-align-generator-lib\auto-align-generator-lib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="assets\config\settings.json" />
+  </ItemGroup>
+
+</Project>
