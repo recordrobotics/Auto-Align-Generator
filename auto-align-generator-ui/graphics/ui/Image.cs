@@ -306,30 +306,80 @@ namespace AutoAlignGenerator.ui.graphics.ui
             if (texture != null && uv1 != PreserveAspectMode.None)
             {
                 float aspect = (float)texture.Width / texture.Height;
-                if (bounds.Width > bounds.Height || true)
+                switch (uv1)
                 {
-                    vertex.TexCoords -= new Vector2(0, 0.5f - boundsAspect / aspect / 2);
-                    vertex.TexCoords *= new Vector2(1, aspect / boundsAspect);
-                }
-                else
-                {
-                    vertex.TexCoords -= new Vector2(0.5f - aspect / boundsAspect / 2, 0);
-                    vertex.TexCoords *= new Vector2(aspect * boundsAspect, 1);
+                    case PreserveAspectMode.Horizontal:
+                        vertex.TexCoords -= new Vector2(0, 0.5f - boundsAspect / aspect / 2);
+                        vertex.TexCoords *= new Vector2(1, aspect / boundsAspect);
+                        break;
+                    case PreserveAspectMode.Vertical:
+                        vertex.TexCoords -= new Vector2(0.5f - aspect / boundsAspect / 2, 0);
+                        vertex.TexCoords *= new Vector2(boundsAspect / aspect, 1);
+                        break;
+                    case PreserveAspectMode.Fill:
+                        if (boundsAspect > aspect)
+                        {
+                            vertex.TexCoords -= new Vector2(0, 0.5f - boundsAspect / aspect / 2);
+                            vertex.TexCoords *= new Vector2(1, aspect / boundsAspect);
+                        }
+                        else
+                        {
+                            vertex.TexCoords -= new Vector2(0.5f - aspect / boundsAspect / 2, 0);
+                            vertex.TexCoords *= new Vector2(boundsAspect / aspect, 1);
+                        }
+                        break;
+                    case PreserveAspectMode.Fit:
+                        if (boundsAspect < aspect)
+                        {
+                            vertex.TexCoords -= new Vector2(0, 0.5f - boundsAspect / aspect / 2);
+                            vertex.TexCoords *= new Vector2(1, aspect / boundsAspect);
+                        }
+                        else
+                        {
+                            vertex.TexCoords -= new Vector2(0.5f - aspect / boundsAspect / 2, 0);
+                            vertex.TexCoords *= new Vector2(boundsAspect / aspect, 1);
+                        }
+                        break;
                 }
             }
 
             if (mask != null && uv2 != PreserveAspectMode.None)
             {
                 float aspect = (float)mask.Width / mask.Height;
-                if (bounds.Width > bounds.Height)
+                switch (uv1)
                 {
-                    vertex.TexCoordsAlt -= new Vector2(0, 0.5f - boundsAspect / aspect / 2);
-                    vertex.TexCoordsAlt *= new Vector2(1, aspect / boundsAspect);
-                }
-                else
-                {
-                    vertex.TexCoordsAlt -= new Vector2(0.5f - aspect / boundsAspect / 2, 0);
-                    vertex.TexCoordsAlt *= new Vector2(aspect * boundsAspect, 1);
+                    case PreserveAspectMode.Horizontal:
+                        vertex.TexCoords -= new Vector2(0, 0.5f - boundsAspect / aspect / 2);
+                        vertex.TexCoords *= new Vector2(1, aspect / boundsAspect);
+                        break;
+                    case PreserveAspectMode.Vertical:
+                        vertex.TexCoords -= new Vector2(0.5f - aspect / boundsAspect / 2, 0);
+                        vertex.TexCoords *= new Vector2(boundsAspect / aspect, 1);
+                        break;
+                    case PreserveAspectMode.Fill:
+                        if (boundsAspect > aspect)
+                        {
+                            vertex.TexCoords -= new Vector2(0, 0.5f - boundsAspect / aspect / 2);
+                            vertex.TexCoords *= new Vector2(1, aspect / boundsAspect);
+                        }
+                        else
+                        {
+                            vertex.TexCoords -= new Vector2(0.5f - aspect / boundsAspect / 2, 0);
+                            vertex.TexCoords *= new Vector2(boundsAspect / aspect, 1);
+                        }
+                        break;
+                    case PreserveAspectMode.Fit:
+                        if (boundsAspect < aspect)
+                        {
+                            vertex.TexCoords -= new Vector2(0, 0.5f - boundsAspect / aspect / 2);
+                            vertex.TexCoords *= new Vector2(1, aspect / boundsAspect);
+                        }
+                        else
+                        {
+                            vertex.TexCoords -= new Vector2(0.5f - aspect / boundsAspect / 2, 0);
+                            vertex.TexCoords *= new Vector2(boundsAspect / aspect, 1);
+                        }
+                        break;
                 }
             }
         }

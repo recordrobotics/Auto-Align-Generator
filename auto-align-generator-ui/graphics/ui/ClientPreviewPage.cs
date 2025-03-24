@@ -7,7 +7,6 @@ namespace AutoAlignGenerator.ui.graphics.ui
     public class ClientPreviewPage : Page
     {
         //private LiveClientPreviewController livePreview;
-        private MapCameraController cameraController;
 
         private FlowPanel controlPanel;
         private AnchorLayout controlPanelLayout;
@@ -15,12 +14,13 @@ namespace AutoAlignGenerator.ui.graphics.ui
         private Button settingsButton;
         private Texture settingsIcon;
 
-        private AnchorLayout dataPanelLayout;
-
         private SettingsPage settingsPage;
 
         private Texture mapTexture;
         private Image mapImage;
+
+        private Texture robotTexture;
+        private Image robotImage;
 
         private UIClient client;
 
@@ -30,11 +30,6 @@ namespace AutoAlignGenerator.ui.graphics.ui
             this.client = client;
 
             //livePreview = new LiveClientPreviewController(sensor.Transform);
-
-            cameraController = new MapCameraController(camera);
-            cameraController.Distance = 6;
-            cameraController.Yaw = 45;
-            cameraController.Pitch = 25;
 
             controlPanel = new FlowPanel(canvas);
             controlPanel.Direction = FlowDirection.Horizontal;
@@ -56,8 +51,15 @@ namespace AutoAlignGenerator.ui.graphics.ui
             mapImage = new Image(canvas);
             mapImage.Bounds = new RectangleF(0, 0, 1920, 1080);
             mapImage.Color = SolidUIColor.White;
-            mapImage.PreserveAspect = true;
+            mapImage.PreserveAspect = Image.PreserveAspectMode.Fit;
             mapImage.Texture = mapTexture;
+
+            robotImage = new Image(canvas);
+            robotImage.Bounds = new RectangleF(100, 100, 200, 200);
+            robotImage.ImageType = ImageType.Sliced;
+            robotImage.Size = new Size(30, 30);
+            robotImage.Color = SolidUIColor.White;
+            robotImage.Texture = Texture.RoundedRect;
 
             settingsButton = new Button("Settings", canvas);
             settingsButton.Padding = new Insets(16);
@@ -81,13 +83,13 @@ namespace AutoAlignGenerator.ui.graphics.ui
         {
             Scene.Update += new PrioritizedAction<UpdatePriority, double>(UpdatePriority.BeforeGeneral, Scene_Update);
             SubscribeLater(
-                cameraController,
                 mapImage,
-                controlPanel, controlPanelLayout,
-                dataPanelLayout
+                robotImage,
+                controlPanel, controlPanelLayout
                 );
 
             Canvas.AddComponent(mapImage);
+            Canvas.AddComponent(robotImage);
             Canvas.AddComponent(controlPanel);
             Canvas.AddComponent(settingsButton);
         }
@@ -95,12 +97,12 @@ namespace AutoAlignGenerator.ui.graphics.ui
         public override void Hide()
         {
             Canvas.RemoveComponent(mapImage);
+            Canvas.RemoveComponent(robotImage);
             Canvas.RemoveComponent(controlPanel);
             UnsubscribeLater(
-                cameraController,
                 mapImage,
-                controlPanel, controlPanelLayout,
-                dataPanelLayout
+                robotImage,
+                controlPanel, controlPanelLayout
                 );
             Scene.Update -= Scene_Update;
         }

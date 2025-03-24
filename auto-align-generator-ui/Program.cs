@@ -19,7 +19,7 @@ namespace AutoAlignGenerator.ui
             var options = WindowOptions.Default;
             var dpi = Window.GetSystemDpiScale();
             options.Size = new Vector2D<int>((int)(1920 * dpi.X), (int)(1080 * dpi.Y));
-            options.Title = "piconavx ui";
+            options.Title = "Auto Align Generator";
             options.VSync = false;
             options.Samples = 16;
             options.IsVisible = false;

@@ -1,5 +1,5 @@
-# piconavx-host
-[![.NET Core Desktop](https://github.com/recordrobotics/piconavx-host/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/recordrobotics/piconavx-host/actions/workflows/dotnet-desktop.yml)
-[![CodeQL](https://github.com/recordrobotics/piconavx-host/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/recordrobotics/piconavx-host/actions/workflows/github-code-scanning/codeql)
+# Auto-Align-Generator
+[![.NET Core Desktop](https://github.com/recordrobotics/auto-align-generator/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/recordrobotics/auto-align-generator/actions/workflows/dotnet-desktop.yml)
+[![CodeQL](https://github.com/recordrobotics/auto-align-generator/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/recordrobotics/auto-align-generator/actions/workflows/github-code-scanning/codeql)
 
-Host UI to manage and view piconavx sensors wirelessly
+Util to generate auto align constants based off of field measurements.

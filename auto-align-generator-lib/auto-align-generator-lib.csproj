@@ -19,13 +19,10 @@
   <ItemGroup>
     <None Remove="ntcore.dll" />
     <None Remove="ntcore.lib" />
-    <None Remove="ntcore.pdb" />
     <None Remove="wpinet.dll" />
     <None Remove="wpinet.lib" />
-    <None Remove="wpinet.pdb" />
     <None Remove="wpiutil.dll" />
     <None Remove="wpiutil.lib" />
-    <None Remove="wpiutil.pdb" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,25 +32,16 @@
     <Content Include="ntcore.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ntcore.pdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="wpinet.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="wpinet.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="wpinet.pdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="wpiutil.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="wpiutil.lib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wpiutil.pdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
