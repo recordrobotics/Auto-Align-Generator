@@ -28,7 +28,7 @@ namespace AutoAlignGenerator
             inst = NetworkTableInstance.GetDefault();
             this.team = team;
 
-            odometrySubscriber = inst.GetRawTopic("/AdvantageScope/RealOutputs/Odometry/Robot").Subscribe();
+            odometrySubscriber = inst.GetRawTopic("/AdvantageKit/RealOutputs/Odometry/Robot").Subscribe();
         }
 
         public void Start()

@@ -27,6 +27,11 @@ namespace AutoAlignGenerator.ui.graphics
                 Border = new Insets(12),
                 WrapMode = TextureWrapMode.Clamp
             });
+            Texture.RoundedOutline = AddResource(new Texture("assets/textures/roundoutline.png")
+            {
+                Border = new Insets(26),
+                WrapMode = TextureWrapMode.Clamp
+            });
             Texture.Pill = AddResource(new Texture("assets/textures/pill.png")
             {
                 Border = new Insets(32),

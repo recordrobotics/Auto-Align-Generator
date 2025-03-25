@@ -1,4 +1,5 @@
 ﻿using AutoAlignGenerator.ui.controllers;
+using System.Diagnostics;
 using System.Drawing;
 using System.Numerics;
 
@@ -6,7 +7,7 @@ namespace AutoAlignGenerator.ui.graphics.ui
 {
     public class ClientPreviewPage : Page
     {
-        //private LiveClientPreviewController livePreview;
+        private LiveClientPreviewController livePreview;
 
         private FlowPanel controlPanel;
         private AnchorLayout controlPanelLayout;
@@ -16,10 +17,10 @@ namespace AutoAlignGenerator.ui.graphics.ui
 
         private SettingsPage settingsPage;
 
-        private Texture mapTexture;
+        private AnchorLayout mapImageLayout;
         private Image mapImage;
 
-        private Texture robotTexture;
+        private FieldLayout robotLayout;
         private Image robotImage;
 
         private UIClient client;
@@ -29,7 +30,7 @@ namespace AutoAlignGenerator.ui.graphics.ui
             this.settingsPage = settingsPage;
             this.client = client;
 
-            //livePreview = new LiveClientPreviewController(sensor.Transform);
+            livePreview = new LiveClientPreviewController(client);
 
             controlPanel = new FlowPanel(canvas);
             controlPanel.Direction = FlowDirection.Horizontal;
@@ -42,7 +43,7 @@ namespace AutoAlignGenerator.ui.graphics.ui
 
             settingsIcon = Scene.AddResource(new Texture("assets/textures/settings.png"));
 
-            mapTexture = Scene.AddResource(new Texture("assets/textures/field25-annotated.png")
+            var mapTexture = Scene.AddResource(new Texture("assets/textures/field25-annotated.png")
             {
                 WrapMode = TextureWrapMode.Border
             });
@@ -54,12 +55,19 @@ namespace AutoAlignGenerator.ui.graphics.ui
             mapImage.PreserveAspect = Image.PreserveAspectMode.Fit;
             mapImage.Texture = mapTexture;
 
+            mapImageLayout = new AnchorLayout(mapImage, this);
+            mapImageLayout.Anchor = Anchor.All;
+            mapImageLayout.Insets = new Insets(0);
+
             robotImage = new Image(canvas);
             robotImage.Bounds = new RectangleF(100, 100, 200, 200);
             robotImage.ImageType = ImageType.Sliced;
             robotImage.Size = new Size(30, 30);
-            robotImage.Color = SolidUIColor.White;
-            robotImage.Texture = Texture.RoundedRect;
+            robotImage.Color = SolidUIColor.Transparent;
+            robotImage.Texture = Texture.RoundedOutline;
+
+            robotLayout = new FieldLayout(robotImage, this);
+            robotLayout.ComponentBounds = new RectangleF(robotLayout.FieldBounds.Width / 2, robotLayout.FieldBounds.Height / 2, robotLayout.ComponentBounds.Width, robotLayout.ComponentBounds.Height);
 
             settingsButton = new Button("Settings", canvas);
             settingsButton.Padding = new Insets(16);
@@ -82,10 +90,12 @@ namespace AutoAlignGenerator.ui.graphics.ui
         public override void Show()
         {
             Scene.Update += new PrioritizedAction<UpdatePriority, double>(UpdatePriority.BeforeGeneral, Scene_Update);
+
             SubscribeLater(
-                mapImage,
-                robotImage,
-                controlPanel, controlPanelLayout
+                mapImage, mapImageLayout,
+                robotImage, robotLayout,
+                controlPanel, controlPanelLayout,
+                livePreview
                 );
 
             Canvas.AddComponent(mapImage);
@@ -96,20 +106,39 @@ namespace AutoAlignGenerator.ui.graphics.ui
 
         public override void Hide()
         {
+            Scene.Update -= Scene_Update;
+
             Canvas.RemoveComponent(mapImage);
             Canvas.RemoveComponent(robotImage);
             Canvas.RemoveComponent(controlPanel);
             UnsubscribeLater(
-                mapImage,
-                robotImage,
-                controlPanel, controlPanelLayout
+                mapImage, mapImageLayout,
+                robotImage, robotLayout,
+                controlPanel, controlPanelLayout,
+                livePreview
                 );
-            Scene.Update -= Scene_Update;
         }
 
         private void Scene_Update(double deltaTime)
         {
-            mapImage.Bounds = Bounds;
+            if(client.Connected)
+            {
+                robotImage.Color = Theme.Robot;
+            } else
+            {
+                robotImage.Color = SolidUIColor.Transparent;
+            }
+
+            if (robotImage.Texture != null)
+            {
+                float robotFactor = robotImage.Bounds.Width / robotImage.Texture.Width;
+                robotImage.Size = new Size((int)(11 * robotFactor), (int)(11 * robotFactor));
+            }
+
+            robotLayout.ComponentBounds = new RectangleF(livePreview.Translation.X, livePreview.Translation.Y, robotLayout.ComponentBounds.Width, robotLayout.ComponentBounds.Height);
+
+            robotImage.SetOrigin(new Vector2(0.5f, 0.5f));
+            robotImage.Transform.Rotation = Quaternion.CreateFromAxisAngle(Vector3.UnitZ, livePreview.Rotation);
         }
     }
 }

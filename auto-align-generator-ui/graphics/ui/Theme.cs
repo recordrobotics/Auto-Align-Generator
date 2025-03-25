@@ -110,6 +110,7 @@ namespace AutoAlignGenerator.ui.graphics.ui
                 ScrollThumbActive = "#4d4d4d",
                 StatusOk = "#2F6D30",
                 StatusError = "#6E3131",
+                Robot = "#e0601f",
                 Neutral = new()
                 {
                     TextIsBackground = false,
@@ -230,6 +231,8 @@ namespace AutoAlignGenerator.ui.graphics.ui
             public string? StatusOk { get; set; }
             [JsonPropertyName("status_error")]
             public string? StatusError { get; set; }
+            [JsonPropertyName("robot")]
+            public string? Robot { get; set; }
             [JsonPropertyName("neutral")]
             public ButtonColorFile? Neutral { get; set; }
             [JsonPropertyName("outline")]
@@ -280,6 +283,9 @@ namespace AutoAlignGenerator.ui.graphics.ui
         public static UIColor StatusOk => _StatusOk;
         private static DelegateUIColor _StatusError = new DelegateUIColor(() => ParseColor(current?.StatusError));
         public static UIColor StatusError => _StatusError;
+        private static DelegateUIColor _Robot = new DelegateUIColor(() => ParseColor(current?.Robot));
+        public static UIColor Robot => _Robot;
+
         private static ThemeButtonColor _Neutral = new(
             () => current?.Neutral?.TextIsBackground,
             new DelegateUIColor(() => ParseColor(current?.Neutral?.Background)),

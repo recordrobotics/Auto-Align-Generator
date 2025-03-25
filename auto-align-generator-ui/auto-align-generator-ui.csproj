@@ -63,6 +63,7 @@
     <None Remove="assets\textures\recordings.png" />
     <None Remove="assets\textures\refresh.png" />
     <None Remove="assets\textures\restore.png" />
+    <None Remove="assets\textures\roundoutline.png" />
     <None Remove="assets\textures\roundrect.png" />
     <None Remove="assets\textures\settings.png" />
     <None Remove="assets\textures\split_mbg.png" />
@@ -97,6 +98,7 @@
     <EmbeddedResource Include="assets\textures\cardshadow.png" />
     <EmbeddedResource Include="assets\textures\field25-annotated.png" />
     <EmbeddedResource Include="assets\textures\pill.png" />
+    <EmbeddedResource Include="assets\textures\roundoutline.png" />
     <EmbeddedResource Include="assets\textures\roundrect.png" />
     <EmbeddedResource Include="assets\textures\settings.png" />
     <EmbeddedResource Include="assets\textures\split_mbg.png" />

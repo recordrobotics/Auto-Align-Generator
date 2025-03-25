@@ -16,6 +16,7 @@
   "scroll_thumb_active": "#4d4d4d",
   "status_ok": "#2F6D30",
   "status_error": "#6E3131",
+  "robot": "#e0601f",
   "neutral": {
     "text_is_background": false,
     "background": "#383838",
