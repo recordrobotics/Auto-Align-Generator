@@ -35,6 +35,7 @@ namespace AutoAlignGenerator
         {
             inst.StartClient4("AutoAlignGenerator");
             inst.SetServerTeam(team);
+            inst.SetServer("localhost");
             inst.StartDSClient();
         }
 

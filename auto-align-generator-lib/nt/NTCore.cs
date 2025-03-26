@@ -32,14 +32,17 @@ namespace AutoAlignGenerator.nt
         [LibraryImport("ntcore")]
         internal static partial void NT_SetServerTeam(NT_Inst inst, uint team, uint port = NT_DEFAULT_PORT4);
 
+        [DllImport("ntcore")]
+        internal static extern void NT_SetServer(NT_Inst inst, ref readonly WPI_String server_name, uint port = NT_DEFAULT_PORT4);
+
         [LibraryImport("ntcore")]
         internal static partial void NT_StartDSClient(NT_Inst inst, uint port = NT_DEFAULT_PORT4);
 
-        [DllImport("ntcore")]
-        internal static extern NT_Bool NT_GetBoolean(NT_Handle subentry, NT_Bool defaultValue);
+        [LibraryImport("ntcore")]
+        internal static partial NT_Bool NT_GetBoolean(NT_Handle subentry, NT_Bool defaultValue);
 
-        [DllImport("ntcore")]
-        internal static extern double NT_GetDouble(NT_Handle subentry, double defaultValue);
+        [LibraryImport("ntcore")]
+        internal static partial double NT_GetDouble(NT_Handle subentry, double defaultValue);
 
         [LibraryImport("ntcore")]
         internal static unsafe partial byte* NT_GetRaw(NT_Handle subentry, byte* defaultValue, uint defaultValueLen, ref uint len);

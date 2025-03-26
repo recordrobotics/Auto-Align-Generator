@@ -26,6 +26,7 @@ namespace AutoAlignGenerator.ui.controllers
         public UIClient()
         {
             client = new Client(SavedResource.Settings.Current.Team);
+            Start();
         }
 
         public bool Start()

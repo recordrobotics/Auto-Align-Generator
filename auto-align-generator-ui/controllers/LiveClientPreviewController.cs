@@ -25,13 +25,11 @@ namespace AutoAlignGenerator.ui.controllers
 
         public override void Subscribe()
         {
-            client.Start();
             Scene.Update += new PrioritizedAction<UpdatePriority, double>(UpdatePriority.BeforeGeneral, Scene_Update);
         }
 
         public override void Unsubscribe()
         {
-            client.Stop();
             Scene.Update -= Scene_Update;
         }
 

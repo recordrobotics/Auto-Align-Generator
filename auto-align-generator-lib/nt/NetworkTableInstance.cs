@@ -37,6 +37,18 @@ namespace AutoAlignGenerator.nt
             NTCore.NT_SetServerTeam(inst, team, port);
         }
 
+        public void SetServer(string server_name)
+        {
+            WPI_String str = new WPI_String(server_name);
+            NTCore.NT_SetServer(inst, ref str);
+        }
+
+        public void SetServer(string server_name, uint port)
+        {
+            WPI_String str = new WPI_String(server_name);
+            NTCore.NT_SetServer(inst, ref str, port);
+        }
+
         public void StartDSClient()
         {
             NTCore.NT_StartDSClient(inst);

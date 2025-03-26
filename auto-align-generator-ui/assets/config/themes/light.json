@@ -17,6 +17,7 @@
   "status_ok": "#87e088",
   "status_error": "#d97777",
   "robot": "#e0601f",
+  "robot_heading": "#f29b6f",
   "neutral": {
     "text_is_background": false,
     "background": "#fff",

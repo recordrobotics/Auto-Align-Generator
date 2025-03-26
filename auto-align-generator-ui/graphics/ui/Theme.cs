@@ -111,6 +111,7 @@ namespace AutoAlignGenerator.ui.graphics.ui
                 StatusOk = "#2F6D30",
                 StatusError = "#6E3131",
                 Robot = "#e0601f",
+                RobotHeading = "#f29b6f",
                 Neutral = new()
                 {
                     TextIsBackground = false,
@@ -233,6 +234,8 @@ namespace AutoAlignGenerator.ui.graphics.ui
             public string? StatusError { get; set; }
             [JsonPropertyName("robot")]
             public string? Robot { get; set; }
+            [JsonPropertyName("robot_heading")]
+            public string? RobotHeading { get; set; }
             [JsonPropertyName("neutral")]
             public ButtonColorFile? Neutral { get; set; }
             [JsonPropertyName("outline")]
@@ -285,6 +288,8 @@ namespace AutoAlignGenerator.ui.graphics.ui
         public static UIColor StatusError => _StatusError;
         private static DelegateUIColor _Robot = new DelegateUIColor(() => ParseColor(current?.Robot));
         public static UIColor Robot => _Robot;
+        private static DelegateUIColor _RobotHeading = new DelegateUIColor(() => ParseColor(current?.RobotHeading));
+        public static UIColor RobotHeading => _RobotHeading;
 
         private static ThemeButtonColor _Neutral = new(
             () => current?.Neutral?.TextIsBackground,
