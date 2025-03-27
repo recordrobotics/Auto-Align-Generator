@@ -18,6 +18,9 @@ namespace AutoAlignGenerator.ui.graphics.ui
         private MapLivePreviewPanel map;
         private AnchorLayout mapLayout;
 
+        private AnalysisPanel analysis;
+        private AnchorLayout analysisLayout;
+
         private UIClient client;
 
         public ClientPreviewPage(Canvas canvas, Camera camera, Navigator navigator, SettingsPage settingsPage, UIClient client) : base(canvas, navigator)
@@ -40,6 +43,13 @@ namespace AutoAlignGenerator.ui.graphics.ui
             mapLayout.Anchor = Anchor.All;
             mapLayout.Insets = new Insets(0, 0, 0, 300);
 
+            analysis = new AnalysisPanel(canvas);
+            analysis.Bounds = new RectangleF(0, 0, 0, 300);
+
+            analysisLayout = new AnchorLayout(analysis, this);
+            analysisLayout.Anchor = Anchor.Bottom | Anchor.Left | Anchor.Right;
+            analysisLayout.Insets = new Insets(0);
+
             settingsIcon = Scene.AddResource(new Texture("assets/textures/settings.png"));
 
             settingsButton = new Button("Settings", canvas);
@@ -57,6 +67,8 @@ namespace AutoAlignGenerator.ui.graphics.ui
         {
             controlPanel.ZIndex = ZIndex + 1;
             settingsButton.ZIndex = ZIndex + 1;
+            map.ZIndex = ZIndex;
+            analysis.ZIndex = ZIndex + 1;
         }
 
         public override void Show()
@@ -65,12 +77,14 @@ namespace AutoAlignGenerator.ui.graphics.ui
 
             SubscribeLater(
                 controlPanel, controlPanelLayout,
-                map, mapLayout
+                map, mapLayout,
+                analysis, analysisLayout
                 );
 
             Canvas.AddComponent(controlPanel);
             Canvas.AddComponent(settingsButton);
             Canvas.AddComponent(map);
+            Canvas.AddComponent(analysis);
         }
 
         public override void Hide()
@@ -79,10 +93,12 @@ namespace AutoAlignGenerator.ui.graphics.ui
 
             Canvas.RemoveComponent(controlPanel);
             Canvas.RemoveComponent(map);
+            Canvas.RemoveComponent(analysis);
 
             UnsubscribeLater(
                 controlPanel, controlPanelLayout,
-                map, mapLayout
+                map, mapLayout,
+                analysis, analysisLayout
                 );
         }
 
