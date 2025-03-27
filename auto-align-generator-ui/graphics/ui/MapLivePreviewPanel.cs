@@ -123,6 +123,7 @@ namespace AutoAlignGenerator.ui.graphics.ui
 
             robotImage.SetOrigin(new Vector2(0.5f, 0.5f));
             robotImage.Transform.Rotation = Quaternion.CreateFromAxisAngle(Vector3.UnitZ, -livePreview.Rotation);
+            robotHeadingImage.Transform = robotImage.Transform;
         }
     }
 }

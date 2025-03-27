@@ -23,6 +23,7 @@ namespace AutoAlignGenerator.ui.graphics.ui
         public ClientPreviewPage(Canvas canvas, Camera camera, Navigator navigator, SettingsPage settingsPage, UIClient client) : base(canvas, navigator)
         {
             this.settingsPage = settingsPage;
+            this.client = client;
 
             controlPanel = new FlowPanel(canvas);
             controlPanel.Direction = FlowDirection.Horizontal;

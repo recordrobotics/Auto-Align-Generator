@@ -20,9 +20,9 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: piconavx-host.sln
-      Project_Path: piconavxui/piconavxui.csproj
-      Project_Directory: piconavxui
+      Solution_Name: Auto-Align-Generator.sln
+      Project_Path: auto-align-generator-ui/auto-align-generator-ui.csproj
+      Project_Directory: auto-align-generator-ui
 
     steps:
     - name: Checkout
